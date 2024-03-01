@@ -29,9 +29,9 @@ Requirement analysis of this project:
 
             #fowlling this structure for this project
 
-[X]- dependencies
-[X]- app object module-saffolding
-[X]- configuration
-[X]- create server
-[X]- handle request response
-[X]- start the server
+[X] dependencies,
+[X] app object module-saffolding
+[X] configuration
+[X] create server
+[X] handle request response
+[X] start the server
