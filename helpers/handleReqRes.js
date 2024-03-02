@@ -7,7 +7,7 @@ const { notFoundHandler } = require("../handler/routeHandler/notFoundHandler");
 // module scaffolding
 const handler = {};
 
-// hanler body
+// handler body
 handler.handleReqRes = (req, res) => {
   // handle request
   const parsedUrl = url.parse(req.url, true);
@@ -29,31 +29,29 @@ handler.handleReqRes = (req, res) => {
   const decoder = new StringDecoder("utf-8");
   let realData = "";
 
-  const choosenHandler = routes[trimmedPath]
+  const chosenHandler = routes[trimmedPath]
     ? routes[trimmedPath]
     : notFoundHandler;
-
-  choosenHandler(parsedProperties, (statusCode, payload) => {
-    statusCode = typeof statusCode === "number" ? statusCode : 500;
-    payload = typeof payload === "object" ? payload : {};
-
-    // use json  stringify method
-
-    const payloadString = JSON.stringify(payload);
-
-    // finally send response to the client
-    res.writeHead(statusCode);
-    res.end(payloadString);
-  });
 
   req.on("data", (buffer) => {
     realData += decoder.write(buffer);
   });
-  req.on("end", (buffer) => {
-    realData += decoder.end(buffer);
-    console.log(realData);
-    // handle response
-    res.end("hello programmers World");
+  req.on("end", () => {
+    realData += decoder.end();
+
+    // get request
+    chosenHandler(parsedProperties, (statusCode, payload) => {
+      statusCode = typeof statusCode === "number" ? statusCode : 500;
+      payload = typeof payload === "object" ? payload : {};
+
+      // use json stringify method
+
+      const payloadString = JSON.stringify(payload);
+
+      // finally send response to the client
+      res.writeHead(statusCode);
+      res.end(payloadString);
+    });
   });
 };
 
