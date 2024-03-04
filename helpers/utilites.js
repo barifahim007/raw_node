@@ -1,3 +1,6 @@
+const crypto = require("node:crypto");
+const environments = require("../helpers/evniroments.js");
+
 const utilities = {};
 
 utilities.parseJSON = (stringJson) => {
@@ -8,6 +11,18 @@ utilities.parseJSON = (stringJson) => {
     output = {};
   }
   return output;
+};
+
+utilities.hash = (stringHash) => {
+  if (typeof stringHash === "string" && stringHash.length > 0) {
+    const hash = crypto
+      .createHmac("sha256", environments.secret)
+      .update(stringHash)
+      .digest("hex");
+    return hash;
+  } else {
+    return false;
+  }
 };
 
 module.exports = utilities;
