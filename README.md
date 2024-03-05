@@ -35,3 +35,7 @@ Requirement analysis of this project:
 [X] create server
 [X] handle request response
 [X] start the server
+
+day-2 handle basic router
+day-3 handle user router
+day-4 handle token authentication

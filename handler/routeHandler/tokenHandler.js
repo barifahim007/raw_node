@@ -20,8 +20,6 @@ handler.tokenHandler = (requestProperties, callback) => {
 // another module scaffolding
 handler._token = {};
 
-// ! sumit dadas code
-
 handler._token.post = (requestProperties, callback) => {
   const phone =
     typeof requestProperties.body.phone === "string" &&
@@ -68,8 +66,6 @@ handler._token.post = (requestProperties, callback) => {
     });
   }
 };
-
-//  ! sumit dadas code
 
 handler._token.get = (requestProperties, callback) => {
   const id =
