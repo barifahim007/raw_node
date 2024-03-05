@@ -24,27 +24,28 @@ utilities.hash = (stringHash) => {
     return false;
   }
 };
-// compare password and hashed
-utilities.createRandomToken = (stringLength) => {
-  let stringToken = stringLength;
-  stringToken =
-    typeof stringLength === "number" && stringLength > 0 ? stringLength : false;
+// create random string
+utilities.createRandomString = (strlength) => {
+  // Check if strlength is a valid number greater than 0
+  let length = strlength;
+  length = typeof strlength === "number" && strlength > 0 ? strlength : false;
 
-  if (stringToken) {
-    let possibleCharecters = "abcdefghijklmnopqrstwxyz1234567890";
-
+  if (length) {
+    // Define the possible characters for the string
+    const possiblecharacters = "abcdefghijklmnopqrstuvwxyz1234567890";
     let output = "";
-    // loop the variables
-    for (let i = 1; i < stringToken; i++) {
-      const randomCharecter = possibleCharecters.charAt(
-        Math.floor(Math.random() * possibleCharecters.length)
+    // Loop through to generate the string
+    for (let i = 1; i <= length; i += 1) {
+      // Select a random character from possiblecharacters
+      const randomCharacter = possiblecharacters.charAt(
+        Math.floor(Math.random() * possiblecharacters.length)
       );
-      output += randomCharecter;
+      // Append the random character to the output
+      output += randomCharacter;
     }
-    return output;
-  } else {
-    return false;
+    return output; // Return the generated string
   }
+  return false; // Return false if the input length is not valid
 };
 
 module.exports = utilities;
