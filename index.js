@@ -10,15 +10,15 @@ const http = require("node:http");
 const { handleReqRes } = require("./helpers/handleReqRes");
 const environments = require("./helpers/evniroments");
 const data = require("./lib/data");
+const { sendTwilioSms } = require("./helpers/notifications");
 
 // app object-module scaffolding
 const app = {};
 
-// @testing todo
-// data.delete("test", "newfile", (err) => {
-//   console.log(err);
-// });
-
+//  @twiloo sms
+sendTwilioSms("01735789091", "hey twlio brozz", (error) => {
+  console.log(`this is twlior borz ${error}`);
+});
 //  create server - take an function
 app.createServer = () => {
   const server = http.createServer(app.handleReqRes);

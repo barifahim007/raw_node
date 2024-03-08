@@ -15,5 +15,8 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "twilio": "^4.23.0"
   }
 }
